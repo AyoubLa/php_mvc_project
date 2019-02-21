@@ -15,7 +15,7 @@ class Login extends Controller {
 
         } else {
 
-            header('Location: /');
+            header('Location: /php_mvc/');
 
         }
 
@@ -26,13 +26,21 @@ class Login extends Controller {
      */
     function Log_In () {
 
-        // Loads /models/example.php
-        $this->model('Example');
+        // Loads /models/user.php
+        $this->model('User');
 
-        if ($this->Example->exampleMethod()) // Example->exampleMethod() from /models/example.php
-            $_SESSION['login'] = "ExampleLogin";
+        if(isset($_POST['login']) AND isset($_POST['password'])){
 
-        header("Location: /");
+            if ($this->user->hydrate($_POST['login'], $_POST['password'])){
+                
+                $_SESSION['login'] = $_POST['login'];
+                $_SESSION['password'] = $_POST['password'];
+                $_SESSION['firstName'] = $this->user->getFirstName();
+                $_SESSION['lastName'] = $this->user->getLastName();
+            }
+        }
+
+        header("Location: /php_mvc/");
 
     }
 
@@ -43,7 +51,7 @@ class Login extends Controller {
 
         $_SESSION = [];
         session_unset();
-        header('Location: /');
+        header('Location: /php_mvc/');
 
     }
 

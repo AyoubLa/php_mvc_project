@@ -7,7 +7,7 @@
  * It is structured as: http(s)://address/class/method/[optional parameters divided by a '/']
  * Every page of the controller can accept optional parameters from the uri
  */
-class ExampleController extends Controller {
+class UserController extends Controller {
 
     /*
      * http://localhost/examplecontroller

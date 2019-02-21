@@ -56,7 +56,7 @@ class App {
 
         } catch (PDOException $e) {
 
-            echo 'Błąd połączenia: ' . $e->getMessage();
+            echo 'Connection Error : ' . $e->getMessage();
 
         }
 
@@ -75,11 +75,11 @@ class App {
 
         $route = explode('/', URI);
 
-        $route[1] = strtolower($route[1]);
+        $route[2] = strtolower($route[2]);
 
-        if (file_exists(ROOT . '/php_mvc/app/controllers/' . $route[1] . '.php')) {
-            $this->requires('/php_mvc/app/controllers/' . $route[1] . '.php');
-            $controller = new $route[1]();
+        if ((sizeof($route) > 2) && file_exists(ROOT . '/php_mvc/app/controllers/' . $route[2] . '.php')) {
+            $this->requires('/php_mvc/app/controllers/' . $route[2] . '.php');
+            $controller = new $route[2]();
         } else {
             $this->requires('/php_mvc/app/controllers/main.php');
             $main = new Main();

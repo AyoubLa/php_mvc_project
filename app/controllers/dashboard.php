@@ -9,7 +9,7 @@ class Dashboard extends Controller {
         
         if (!isset($_SESSION['login'])) {
 
-            header('Location: /login');
+            header('Location: /php_mvc/login');
 
         } else {
 

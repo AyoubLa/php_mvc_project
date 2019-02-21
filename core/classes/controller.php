@@ -20,11 +20,11 @@ abstract class Controller {
 
     private function router () {
 
-        if (class_exists($this->route[1])) {
+        if (class_exists($this->route[2])) {
 
-            if ($this->args >= 3) {
-                if (method_exists($this, $this->route[2])) {
-                    $this->uriCaller(2, 3);
+            if ($this->args >= 4) {
+                if (method_exists($this, $this->route[3])) {
+                    $this->uriCaller(3, 4);
                 } else {
                     $this->uriCaller(0, 2);
                 }
@@ -34,9 +34,9 @@ abstract class Controller {
 
         } else {
 
-            if ($this->args >= 2) {
-                if (method_exists($this, $this->route[1])) {
-                    $this->uriCaller(1, 2);
+            if ($this->args >= 3) {
+                if (method_exists($this, $this->route[2])) {
+                    $this->uriCaller(2, 3);
                 } else {
                     $this->uriCaller(0, 1);
                 }
@@ -72,9 +72,9 @@ abstract class Controller {
 
         $path = strtolower($path);
 
-        require(ROOT . '/app/models/' . $path . '.php');
+        require(ROOT . '/php_mvc/app/models/' . $path . '.php');
 
-        $this->$class = new $class;
+        $this->$path = new $class;
 
     }
 
@@ -83,7 +83,7 @@ abstract class Controller {
         if (is_array($data))
             extract($data);
 
-        require(ROOT . '/app/views/' . $path . '.php');
+        require(ROOT . '/php_mvc/app/views/' . $path . '.php');
 
     }
 

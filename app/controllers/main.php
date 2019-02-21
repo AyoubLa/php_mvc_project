@@ -9,12 +9,12 @@ class Main extends Controller {
         
         if (!isset($_SESSION['login'])) {
 
-            echo 'helooo';
+            header('Location: login');
             //header('Location: app/controllers/main.php');
 
         } else {
 
-            header('Location: /dashboard');
+            header('Location: /php_mvc/dashboard');
             
         }
         
